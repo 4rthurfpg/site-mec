@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.classList.replace('no-js','js');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A MeC | Mercado em Conexão · UFMG Hub</title>
+    <meta name="description" content="A Mercado em Conexão é a maior feira de estágios e trainees de Minas Gerais. 3 dias, 32 empresas, 50% dos estudantes de engenharia da UFMG.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── MeC page-specific styles ── */
+        .mec-hero { position: relative; min-height: 72vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; text-align: center; }
+        .mec-hero .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+        .mec-hero-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(2,25,45,0.30) 0%, rgba(2,25,45,0.88) 70%); }
+        .mec-hero-content { position: relative; z-index: 2; padding: 128px 32px 64px; max-width: 960px; display: flex; flex-direction: column; align-items: center; }
+        .mec-hero-content h1 { font-size: clamp(2.2rem, 4.8vw, 3.8rem); color: #fff; line-height: 1.15; margin-bottom: 16px; text-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+        .mec-hero-actions { display: flex; gap: 16px; margin-top: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* ── Mega stats ── */
+        .mega-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--azul-escuro); }
+        .mega-stat { background: var(--azul-escuro); padding: 48px 32px; text-align: center; border-right: 1px solid rgba(255,255,255,0.10); position: relative; }
+        .mega-stat:last-child { border-right: none; }
+        .mega-stat .big-num { font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 800; color: var(--laranja); line-height: 1; margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+        .mega-stat .big-lbl { font-size: 0.88rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.4; }
+        .mega-stat .big-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 8px; font-style: italic; }
+        @media (max-width: 900px) { .mega-stats { grid-template-columns: 1fr 1fr; } .mega-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.10); } }
+        @media (max-width: 520px) { .mega-stats { grid-template-columns: 1fr; } }
+
+        /* ── Modelo ── */
+        .modelo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+        .modelo-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .modelo-card { background: var(--bg-light); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; }
+        .modelo-card .mc-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(2,76,118,0.08); display: flex; align-items: center; justify-content: center; color: var(--azul); font-size: 1.25rem; margin-bottom: 16px; }
+        .modelo-card h4 { font-size: 1rem; font-weight: 700; color: var(--azul-escuro); margin-bottom: 8px; }
+        .modelo-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+        .modelo-card .mc-val { font-size: 1.75rem; font-weight: 800; color: var(--laranja); line-height: 1; margin-bottom: 8px; }
+        .destaque-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(246,162,28,0.12); border: 1px solid rgba(246,162,28,0.3); color: var(--laranja); font-size: 0.875rem; font-weight: 700; padding: 8px 16px; border-radius: 100px; margin-top: 32px; }
+        @media (max-width: 880px) { .modelo-grid { grid-template-columns: 1fr; gap: 40px; } }
+        @media (max-width: 520px) { .modelo-cards { grid-template-columns: 1fr; } }
+
+        /* ── Galeria ── */
+        .mec-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: center; }
+        .mec-gallery-item { border-radius: 16px; overflow: hidden; }
+        .mec-gallery-item img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: 16px; transition: transform 0.5s ease; }
+        .mec-gallery-item:hover img { transform: scale(1.02); }
+        @media (max-width: 600px) { .mec-gallery { grid-template-columns: 1fr; } }
+
+        /* ── Crescimento ── */
+        .crescimento-bar { background: var(--bg-light); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px 32px; }
+        .cbar-label { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px; }
+        .cbar-label span { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+        .cbar-label strong { color: var(--laranja); font-size: 1.1rem; }
+        .cbar-track { background: rgba(2,76,118,0.10); border-radius: 100px; height: 12px; overflow: hidden; }
+        .cbar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--azul), var(--laranja)); width: 0%; transition: width 1.4s cubic-bezier(0.22,1,0.36,1); }
+        .cbar-fill.animated { width: var(--target-width); }
+
+        @media (max-width: 768px) { .mec-hero-content { padding: 0 24px 60px; } }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="logo">
+            <img src="img/logo-mec-white.png" alt="Mercado em Conexão" class="logo-light">
+            <img src="img/logo-mec.png" alt="Mercado em Conexão" class="logo-dark">
+            <span class="logo-text">UFMG <strong>Hub</strong><span class="sub">Conexão &middot; Ação &middot; Inovação</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">O Hub</a>
+            <a href="mec.html" class="active">A MeC</a>
+            <a href="solucoes.html">Soluções</a>
+            <a href="impacto.html">Impacto</a>
+            <a href="contato.html" class="btn btn-outline">Fale com a gente</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="mec-hero">
+    <img src="img/DSCF1972.jpg" alt="Auditório lotado durante palestra da Mercado em Conexão" class="hero-bg">
+    <div class="mec-hero-overlay"></div>
+    <div class="mec-hero-content">
+        <h1>Mercado em Conexão:<br>A maior feira de estágios e trainees de Minas&nbsp;Gerais</h1>
+        <div class="mec-hero-actions">
+            <a href="contato.html" class="btn btn-primary" style="color: #000000;">Quero expor minha empresa <i class="fas fa-arrow-right"></i></a>
+            <a class="btn btn-outline" href="https://www.youtube.com/watch?v=8gU_fM7SdcA" target="_blank" rel="noopener"><i class="fas fa-play icon-left"></i> Ver o vídeo da feira</a>
+        </div>
+    </div>
+</header>
+
+<!-- MEGA STATS -->
+<div class="mega-stats-wrap" style="background: var(--azul-escuro); width: 100%;">
+    <div class="container" style="padding: 0 32px;">
+        <div class="mega-stats">
+            <div class="mega-stat">
+                <div class="big-num" data-target="32" data-prefix="+" data-suffix="">+0</div>
+                <div class="big-lbl">Empresas participantes</div>
+            </div>
+            <div class="mega-stat">
+                <div class="big-num" data-target="50" data-suffix="%">0%</div>
+                <div class="big-lbl">Dos estudantes de engenharia da UFMG presentes</div>
+            </div>
+            <div class="mega-stat">
+                <div class="big-num" data-target="70" data-suffix="%">0%</div>
+                <div class="big-lbl">Lotação média nas palestras</div>
+            </div>
+            <div class="mega-stat">
+                <div class="big-num" data-target="104" data-suffix="%">0%</div>
+                <div class="big-lbl">Crescimento do público em 2026</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- GALERIA -->
+<section class="section">
+    <div class="container">
+        <div class="section-header center fade-in" style="margin-bottom: 40px;">
+            <span class="section-eyebrow">A feira em imagens</span>
+            <h2>Três dias que movem o campus</h2>
+        </div>
+        <div class="mec-gallery fade-in">
+            <div class="mec-gallery-item">
+                <img src="img/palestra-lotada.jpg" alt="Palestra lotada durante a Mercado em Conexão">
+            </div>
+            <div class="mec-gallery-item">
+                <img src="img/DSCF2348.jpg" alt="Leapmotor C10 Stellantis em exposição no campus da UFMG">
+            </div>
+            <div class="mec-gallery-item">
+                <img src="img/ANGT3875.jpg" alt="Estande da Embraer na Mercado em Conexão">
+            </div>
+            <div class="mec-gallery-item">
+                <img src="img/ANGT3854.jpg" alt="Estande do Itaú com estudantes da UFMG">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODELO DO EVENTO -->
+<section class="section section-light">
+    <div class="container">
+        <div class="modelo-grid">
+            <div class="fade-in">
+                <span class="section-eyebrow">Como funciona</span>
+                <h2 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin-bottom: 24px;">Um formato pensado para o máximo impacto</h2>
+                <p style="color: var(--text-muted); font-size: 1.125rem; line-height: 1.75; margin-bottom: 32px;">A Mercado em Conexão acontece no <strong>primeiro semestre do ano</strong> e concentra, em três dias, todo o contato possível entre marcas empregadoras e a nata da engenharia mineira.</p>
+                <div class="modelo-cards">
+                    <div class="modelo-card">
+                        <div class="mc-icon"><i class="fas fa-calendar-days"></i></div>
+                        <div class="mc-val">3</div>
+                        <h4>Dias de evento</h4>
+                        <p>1.º semestre, com data fixada com antecedência</p>
+                    </div>
+                    <div class="modelo-card">
+                        <div class="mc-icon"><i class="fas fa-clock"></i></div>
+                        <div class="mc-val">9h–19h</div>
+                        <h4>Horário de funcionamento</h4>
+                        <p>10 horas diárias de ativações, networking e palestras</p>
+                    </div>
+                    <div class="modelo-card">
+                        <div class="mc-icon"><i class="fas fa-microphone"></i></div>
+                        <div class="mc-val">9</div>
+                        <h4>Palestras por dia</h4>
+                        <p>27 no total, com média de 70% de lotação</p>
+                    </div>
+                    <div class="modelo-card">
+                        <div class="mc-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="mc-val">∞</div>
+                        <h4>Ativações dinâmicas</h4>
+                        <p>Experiências interativas durante todo o dia</p>
+                    </div>
+                </div>
+                <div class="destaque-badge">
+                    <i class="fas fa-arrow-trend-up"></i> 104% de crescimento do público na edição de 2026
+                </div>
+            </div>
+            <div class="fade-in">
+                <img src="img/DSCF1362.jpg" alt="Auditório durante palestra da Mercado em Conexão" style="width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 30%; border-radius: 20px; box-shadow: var(--shadow-lg);">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VÍDEO OFICIAL -->
+<section class="section">
+    <div class="container">
+        <div class="video-feature fade-in">
+            <div>
+                <span class="video-tag" style="color: var(--azul); margin-bottom: 16px;"><i class="fas fa-circle-play"></i> Vídeo oficial da feira</span>
+                <h2 style="font-size: clamp(2rem, 4.5vw, 2.75rem); line-height: 1.2; margin-bottom: 24px; color: var(--azul-escuro);">Sinta a energia da Mercado em Conexão</h2>
+                <p style="color: var(--text-muted); font-size: 1.125rem; line-height: 1.75; margin-bottom: 32px;">Três dias que transformam o campus em um ponto de encontro entre estudantes e as maiores empresas do país. Aperte o play e veja como acontece.</p>
+                <a href="contato.html" class="btn btn-primary" style="margin-top: 32px;">Reservar uma vaga para minha empresa <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <a class="video-frame video-poster" href="https://www.youtube.com/watch?v=8gU_fM7SdcA" target="_blank" rel="noopener">
+                <img src="https://img.youtube.com/vi/8gU_fM7SdcA/maxresdefault.jpg" alt="Vídeo oficial da Mercado em Conexão">
+                <span class="video-play"><i class="fas fa-play"></i></span>
+                <span class="video-cta">Assistir no YouTube</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-dark">
+    <div class="container text-center fade-in" style="max-width: 680px; margin: 0 auto;">
+        <span class="section-eyebrow">Vamos conversar?</span>
+        <h2 style="margin-bottom: 24px;">Sua empresa no maior evento<br>de carreiras de Minas&nbsp;Gerais</h2>
+        <p style="color: rgba(255,255,255,0.75); font-weight: 300; margin-bottom: 32px; font-size: 1.125rem;">Fale com nosso time e garanta a presença da sua marca na próxima edição.</p>
+        <a href="contato.html" class="btn btn-primary">Entrar em contato <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div>
+            <div class="footer-brand">
+                <img src="img/logo-mec-white.png" alt="Mercado em Conexão">
+                <div class="footer-brand-text">UFMG Hub<span class="sub">Mercado em Conexão</span></div>
+            </div>
+            <p>O ecossistema que aproxima a tradição e o talento da Escola de Engenharia da UFMG com a inovação do mercado.</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/mercadoemconexao/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/ufmg-hub/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>Navegação</h4>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">O Hub</a></li>
+                <li><a href="mec.html">A MeC</a></li>
+                <li><a href="solucoes.html">Soluções</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Soluções</h4>
+            <ul>
+                <li><a href="mec.html">A Feira (MeC)</a></li>
+                <li><a href="solucoes.html">Palestras</a></li>
+                <li><a href="solucoes.html">Visitas Técnicas</a></li>
+                <li><a href="solucoes.html">Hackathons</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Contato</h4>
+            <ul>
+                <li><i class="fas fa-envelope"></i> negocios@ufmghub.com.br</li>
+                <li><i class="fas fa-map-marker-alt"></i> Escola de Engenharia da UFMG, Belo Horizonte - MG</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 UFMG Hub &middot; Mercado em Conexão &middot; Escola de Engenharia UFMG</p>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+    // Animate progress bars on scroll
+    const barObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.querySelectorAll('.cbar-fill').forEach(f => f.classList.add('animated'));
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.crescimento-bar').forEach(el => barObserver.observe(el));
+</script>
+</body>
+</html>

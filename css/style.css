@@ -1,0 +1,525 @@
+/* ==========================================================================
+   UFMG HUB & MERCADO EM CONEXÃO — v2
+   ========================================================================== */
+
+:root {
+    --azul-escuro: #024c76;
+    --azul-claro: #57a0bc;
+    --laranja: #f6a21c;
+    --quase-preto: #0a1c2b;
+    --bg-pure: #ffffff;
+    --bg-light: #f5f8fa;
+    --text-main: #16313f;
+    --text-muted: #5e7682;
+    --border-color: #e1eaef;
+
+    --shadow-sm: 0 4px 16px -4px rgba(2, 28, 43, 0.08);
+    --shadow-md: 0 12px 32px -8px rgba(2, 28, 43, 0.10);
+    --shadow-lg: 0 24px 48px -12px rgba(2, 76, 118, 0.18);
+    --radius-md: 14px;
+    --transition: all 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lexend', sans-serif; background-color: var(--bg-pure); color: var(--text-main); line-height: 1.65; overflow-x: hidden; font-weight: 300; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+img { max-width: 100%; display: block; }
+
+h1, h2, h3, h4 { font-weight: 800; color: var(--azul-escuro); line-height: 1.15; letter-spacing: -0.01em; }
+.text-orange { color: var(--laranja); }
+.text-center { text-align: center; }
+
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
+.navbar {
+    position: fixed; top: 0; left: 0; width: 100%; padding: 24px 0;
+    z-index: 1000; transition: var(--transition);
+    background: transparent;
+}
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 16px 0;
+    box-shadow: var(--shadow-sm);
+}
+.navbar-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .logo { display:flex; align-items:center; gap:16px; }
+.navbar .logo img { height: 40px; transition: var(--transition); }
+.navbar .logo-dark { display: none; }
+.navbar.scrolled .logo-light { display: none; }
+.navbar.scrolled .logo-dark { display: block; }
+.navbar .logo-text {
+    font-size: 1.125rem; font-weight: 600; color: #fff; line-height: 1.2;
+    border-left: 1px solid rgba(255,255,255,0.3); padding-left: 16px;
+}
+.navbar.scrolled .logo-text { color: var(--azul-escuro); border-left-color: var(--border-color); }
+.navbar .logo-text strong { font-weight: 800; }
+.navbar .logo-text .sub { display:block; font-size: 0.75rem; font-weight: 400; color: var(--azul-claro); letter-spacing: 0.04em; text-transform: uppercase; }
+
+.nav-links { display: flex; align-items: center; }
+.nav-links a:not(.btn) { font-weight: 500; font-size: 1rem; color: #fff; position: relative; letter-spacing: 0.01em; margin-left: 32px; }
+.nav-links a.btn { margin-left: 32px; }
+.navbar.scrolled .nav-links a:not(.btn) { color: var(--text-main); }
+.nav-links a:hover:not(.btn), .nav-links a.active:not(.btn) { color: var(--laranja); }
+.nav-links a:not(.btn)::after {
+    content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+    background: var(--laranja); transition: var(--transition);
+}
+.nav-links a:hover:not(.btn)::after, .nav-links a.active:not(.btn)::after { width: 100%; }
+
+/* Left-aligned icon inside buttons */
+.btn i.icon-left { margin-right: 8px; margin-left: 0; }
+
+/* ==========================================================================
+   BOTÕES
+   ========================================================================== */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; font-weight: 600; font-size: 0.92rem; border-radius: 50px; cursor: pointer; border: none; transition: var(--transition); letter-spacing: 0.01em; }
+.btn i { margin-left: 10px; }
+.btn-primary { background: var(--laranja); color: #fff; }
+.btn-primary:hover { background: #e08f0e; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(246,162,28,0.35); }
+.btn-outline { border: 2px solid #fff; color: #fff; background: transparent; }
+.btn-outline:hover { background: #fff; color: var(--azul-escuro); transform: translateY(-2px); }
+.navbar.scrolled .btn-outline { border-color: var(--azul-escuro); color: var(--azul-escuro); }
+.navbar.scrolled .btn-outline:hover { background: var(--azul-escuro); color: #fff; }
+.btn-dark { background: var(--azul-escuro); color: #fff; }
+.btn-dark:hover { background: var(--quase-preto); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* ==========================================================================
+   HERO COM FOTO DE FUNDO (estilo PJ / Poli Júnior)
+   ========================================================================== */
+.hero-photo {
+    position: relative;
+    min-height: 640px;
+    height: 100vh;
+    max-height: 920px;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.hero-photo .hero-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+    object-position: center;
+}
+.hero-photo .hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(2,28,43,0.45) 0%, rgba(2,28,43,0.35) 35%, rgba(2,28,43,0.97) 100%);
+}
+.hero-photo .hero-overlay.diag {
+    background:
+        linear-gradient(180deg, rgba(2,28,43,0.35) 0%, rgba(2,28,43,0.25) 35%, rgba(2,28,43,0.97) 100%),
+        linear-gradient(100deg, rgba(2,28,43,0.85) 0%, rgba(2,76,118,0.35) 50%, rgba(2,28,43,0.05) 100%);
+}
+.hero-photo-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    padding: 0 48px 64px;
+    box-sizing: border-box;
+}
+.hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    color: var(--laranja); padding: 8px 18px; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; margin-bottom: 24px; backdrop-filter: blur(4px);
+}
+.hero-photo h1 {
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    color: #fff; max-width: 880px; margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+.hero-photo h1 .accent { color: var(--laranja); }
+.hero-photo .hero-lede {
+    font-size: 1.1rem; color: rgba(255,255,255,0.88); max-width: 620px;
+    margin-bottom: 36px; font-weight: 300; line-height: 1.7;
+}
+.hero-actions { display: flex; flex-wrap: wrap; }
+.hero-actions > * { margin: 0 18px 18px 0; }
+
+/* Faixa de estatísticas — sobe sobre o hero via margem negativa */
+.hero-stats-wrap { padding: 0 48px; position: relative; z-index: 4; }
+.hero-stats-bar {
+    max-width: 1200px; margin: -60px auto 0;
+    background: var(--bg-pure);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    display: flex; flex-wrap: nowrap;
+    overflow: hidden;
+}
+.hero-stats-bar .stat-item {
+    flex: 1 1 0;
+    text-align: center; padding: 32px 20px;
+    border-right: 1px solid var(--border-color);
+}
+.hero-stats-bar .stat-item:last-child { border-right: none; }
+.hero-stats-bar .stat-item h3 { font-size: 2.6rem; color: var(--laranja); margin-bottom: 6px; line-height: 1; font-weight: 800; }
+.hero-stats-bar .stat-item p { font-weight: 500; color: var(--text-muted); font-size: 0.88rem; }
+
+/* ==========================================================================
+   HEADER DE PÁGINA (sub-páginas) — foto menor que a home
+   ========================================================================== */
+.page-hero {
+    position: relative; min-height: 460px; height: 62vh; max-height: 620px;
+    display: flex; align-items: flex-end;
+    color: #fff; overflow: hidden;
+}
+.page-hero .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.page-hero .hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(120deg, rgba(2,28,43,0.90) 10%, rgba(2,76,118,0.55) 55%, rgba(2,28,43,0.25) 100%);
+}
+.page-hero-content {
+    position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%;
+    padding: 0 48px 64px;
+}
+.page-hero .hero-eyebrow { margin-bottom: 18px; }
+.page-hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); color: #fff; max-width: 760px; margin-bottom: 14px; }
+.page-hero .hero-lede { font-size: 1.05rem; color: rgba(255,255,255,0.85); max-width: 620px; font-weight: 300; }
+
+/* ==========================================================================
+   SEÇÕES GERAIS
+   ========================================================================== */
+.section { padding: 110px 48px; }
+.section-light { background: var(--bg-light); }
+.section-dark { background: var(--quase-preto); color: #fff; padding: 72px 48px; }
+.section-dark h2, .section-dark h3 { color: #fff; }
+.container { max-width: 1200px; margin: 0 auto; }
+.container.narrow { max-width: 880px; }
+
+.section-eyebrow {
+    display: inline-block; color: var(--laranja); font-weight: 700; font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px;
+}
+.section-header { margin-bottom: 64px; }
+.section-header.center { text-align: center; }
+.section-header h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin-bottom: 18px; }
+.section-header p { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; font-weight: 300; }
+.section-header.center p { margin: 0 auto; }
+
+.lead-text { font-size: 1.08rem; color: var(--text-muted); font-weight: 300; line-height: 1.8; }
+.lead-text + .lead-text { margin-top: 18px; }
+.lead-text strong { color: var(--azul-escuro); font-weight: 700; }
+
+/* ==========================================================================
+   GRIDS E CARDS
+   ========================================================================== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+.card {
+    background: var(--bg-pure); padding: 36px 32px; border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: transparent; }
+.card-icon {
+    width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.3rem; margin-bottom: 22px; color: #fff;
+    background: var(--azul-escuro);
+}
+.card-icon.ico-orange { background: var(--laranja); }
+.card-icon.ico-light { background: var(--azul-claro); }
+.card h3 { font-size: 1.2rem; margin-bottom: 12px; }
+.card p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
+
+/* Cards de pilar com número como estrutura (são uma sequência real: 3 pilares fundamentais) */
+.pilar-card {
+    background: var(--bg-pure); border-radius: var(--radius-md); padding: 40px 32px;
+    border: 1px solid var(--border-color); position: relative; overflow: hidden;
+    transition: var(--transition);
+}
+.pilar-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.pilar-card .pilar-num {
+    font-size: 4.5rem; font-weight: 800; color: var(--bg-light);
+    position: absolute; top: -6px; right: 18px; line-height: 1; z-index: 0;
+    -webkit-text-stroke: 1px var(--border-color); color: transparent;
+}
+.pilar-card .pilar-label {
+    display: inline-block; font-size: 0.74rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; padding: 5px 12px; border-radius: 50px; margin-bottom: 18px;
+    position: relative; z-index: 1;
+}
+.pilar-card:nth-child(1) .pilar-label { background: rgba(2,76,118,0.08); color: var(--azul-escuro); }
+.pilar-card:nth-child(2) .pilar-label { background: rgba(87,160,188,0.12); color: var(--azul-claro); }
+.pilar-card:nth-child(3) .pilar-label { background: rgba(246,162,28,0.12); color: var(--laranja); }
+.pilar-card h3 { font-size: 1.3rem; margin-bottom: 12px; position: relative; z-index: 1; }
+.pilar-card p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; position: relative; z-index: 1; }
+
+/* Formato cards (palestras, hackathons etc.) */
+.formato-card {
+    background: var(--bg-pure); border-radius: var(--radius-md); padding: 32px 28px;
+    border: 1px solid var(--border-color); transition: var(--transition);
+    display: flex; flex-direction: column; height: 100%;
+}
+.formato-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: transparent; }
+.formato-card .card-icon { margin-bottom: 20px; }
+.formato-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.formato-card p { color: var(--text-muted); font-size: 0.92rem; font-weight: 300; flex-grow: 1; }
+.formato-card ul { list-style: none; margin-top: 16px; font-size: 0.85rem; color: var(--text-muted); }
+.formato-card ul li { padding: 5px 0 5px 22px; position: relative; }
+.formato-card ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--azul-claro); font-size: 0.78rem; top: 7px; }
+
+/* ==========================================================================
+   FEIRA EM DESTAQUE (banner com gradiente)
+   ========================================================================== */
+.feira-banner {
+    background: linear-gradient(125deg, var(--azul-escuro) 0%, #036a99 55%, var(--azul-claro) 100%);
+    border-radius: 24px; padding: 64px; color: #fff;
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center;
+    position: relative; overflow: hidden;
+}
+.feira-banner::before {
+    content: '';
+    position: absolute; right: -120px; top: -120px; width: 360px; height: 360px;
+    border: 40px solid rgba(255,255,255,0.06); border-radius: 50%;
+}
+.feira-banner .badge-principal {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
+    padding: 7px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px;
+    position: relative; z-index: 1;
+}
+.feira-banner h3 { color: #fff; font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 18px; position: relative; z-index: 1; }
+.feira-banner p { font-size: 1rem; color: rgba(255,255,255,0.88); margin-bottom: 28px; font-weight: 300; position: relative; z-index: 1; max-width: 520px; }
+.feira-banner .feira-img { border-radius: 16px; box-shadow: 0 24px 48px rgba(0,0,0,0.35); position: relative; z-index: 1; }
+.feira-mini-stats { display: flex; gap: 32px; margin-top: 28px; position: relative; z-index: 1; flex-wrap: wrap; }
+.feira-mini-stats div { text-align: left; margin-right: 32px; }
+.feira-mini-stats div:last-child { margin-right: 0; }
+.feira-mini-stats .num { font-size: 1.8rem; font-weight: 800; color: var(--laranja); }
+.feira-mini-stats .lbl { font-size: 0.78rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ==========================================================================
+   CASES (cards com imagem)
+   ========================================================================== */
+.case-card { display: flex; background: var(--bg-pure); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 32px; border: 1px solid var(--border-color); }
+.case-img-wrap { width: 42%; overflow: hidden; }
+.case-img-wrap img { width: 100%; height: 100%; object-fit: cover; min-height: 320px; transition: transform 0.6s ease; }
+.case-card:hover .case-img-wrap img { transform: scale(1.05); }
+.case-content { width: 58%; padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+.case-content .case-tag { color: var(--laranja); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; display: block; }
+.case-content h3 { font-size: 1.4rem; margin-bottom: 16px; }
+.case-content p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
+
+/* ==========================================================================
+   GALERIA / CARROSSEL
+   ========================================================================== */
+.carousel-container { width: 100%; overflow: hidden; padding-bottom: 8px; }
+.carousel-track {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; -webkit-overflow-scrolling: touch; gap: 24px; padding-bottom: 16px;
+}
+.carousel-track::-webkit-scrollbar { height: 6px; }
+.carousel-track::-webkit-scrollbar-track { background: var(--border-color); border-radius: 10px; }
+.carousel-track::-webkit-scrollbar-thumb { background: var(--laranja); border-radius: 10px; }
+.carousel-slide {
+    flex: 0 0 78%; max-width: 620px; height: 420px; object-fit: cover;
+    scroll-snap-align: center; border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+}
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.gallery-item { height: 260px; width: 100%; object-fit: cover; border-radius: 10px; transition: var(--transition); }
+.gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+.gallery-grid .gallery-item.tall { grid-row: span 2; height: 100%; }
+
+/* ==========================================================================
+   TESTIMONIALS
+   ========================================================================== */
+.testimonial-card { background: var(--bg-light); padding: 40px; border-radius: var(--radius-md); position: relative; border: 1px solid var(--border-color); }
+.testimonial-card.on-dark { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+.testimonial-card .quote-mark { font-size: 2.4rem; color: var(--azul-claro); opacity: 0.35; line-height: 1; margin-bottom: 12px; font-family: Georgia, serif; }
+.t-text { font-style: italic; margin-bottom: 24px; font-size: 1rem; font-weight: 300; color: var(--text-main); }
+.section-dark .t-text { color: rgba(255,255,255,0.92); }
+.t-author { font-weight: 700; color: var(--azul-escuro); font-size: 0.95rem; }
+.section-dark .t-author { color: #fff; }
+.t-role { font-size: 0.85rem; color: var(--text-muted); }
+.section-dark .t-role { color: rgba(255,255,255,0.6); }
+
+/* ==========================================================================
+   PARCEIROS (marquee)
+   ========================================================================== */
+.partners-section { padding: 56px 0; background: var(--bg-pure); overflow: hidden; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.partners-label { text-align: center; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted); margin-bottom: 32px; }
+.marquee { display: flex; width: 200%; animation: scroll 28s linear infinite; gap: 64px; align-items: center; }
+.marquee-content { display: flex; justify-content: space-around; width: 100%; gap: 64px; }
+.partner-logo { font-size: 1.35rem; font-weight: 800; color: #b8c7ce; transition: var(--transition); display:flex; align-items:center; gap:12px; white-space: nowrap; }
+.partner-logo:hover { color: var(--azul-escuro); }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ==========================================================================
+   FORMULÁRIO
+   ========================================================================== */
+.form-card { background: var(--bg-pure); border-radius: var(--radius-md); padding: 48px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
+.form-group { margin-bottom: 22px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.88rem; color: var(--azul-escuro); }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 14px 16px; border: 1.5px solid var(--border-color); border-radius: 10px;
+    font-family: inherit; font-size: 0.95rem; transition: var(--transition); background: var(--bg-light);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--azul-claro); background: #fff;
+}
+.contact-info-item { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 26px; }
+.contact-info-item .icon-box {
+    width: 48px; height: 48px; border-radius: 12px; background: var(--bg-light);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: var(--laranja); font-size: 1.1rem; border: 1px solid var(--border-color);
+}
+.contact-info-item h4 { font-size: 1rem; margin-bottom: 4px; }
+.contact-info-item p { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer { background: var(--quase-preto); color: #9fb3bd; padding: 32px 48px 28px; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 48px; max-width: 1200px; margin: 0 auto 48px; }
+.footer-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.footer-brand img { height: 36px; }
+.footer-brand-text { font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.3; }
+.footer-brand-text .sub { display: block; font-size: 0.72rem; font-weight: 400; color: var(--azul-claro); text-transform: uppercase; letter-spacing: 0.08em; }
+.footer-grid p { font-size: 0.9rem; font-weight: 300; line-height: 1.7; }
+.footer-links h4 { color: #fff; margin-bottom: 22px; font-size: 0.95rem; }
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 12px; font-size: 0.9rem; }
+.footer-links li i { width: 18px; color: var(--laranja); margin-right: 8px; }
+.footer-social { display: flex; gap: 12px; margin-top: 20px; }
+.footer-social a {
+    width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center; color: #fff; transition: var(--transition);
+}
+.footer-social a:hover { background: var(--laranja); border-color: var(--laranja); transform: translateY(-3px); }
+.footer-bottom { text-align: center; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; max-width: 1200px; margin: 0 auto; }
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+.fade-in { transition: opacity 0.8s ease-out, transform 0.8s ease-out; opacity: 1; transform: none; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+/* Só anima/oculta se JS estiver ativo (classe trocada via script no <head>) */
+.js .fade-in:not(.visible) { opacity: 0; transform: translateY(28px); }
+@media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 992px) {
+    .grid-2, .case-card { grid-template-columns: 1fr; }
+    .case-card { flex-direction: column; }
+    .case-img-wrap, .case-content { width: 100%; }
+    .case-img-wrap img { min-height: 240px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid .gallery-item.tall { grid-row: span 1; height: 260px; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .feira-banner { grid-template-columns: 1fr; padding: 40px; }
+    .feira-banner .feira-img { order: -1; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats-bar { flex-wrap: wrap; }
+    .hero-stats-bar .stat-item { flex: 1 1 50%; }
+    .hero-stats-bar .stat-item:nth-child(2) { border-right: none; }
+    .hero-stats-bar .stat-item:nth-child(1), .hero-stats-bar .stat-item:nth-child(3) { border-bottom: 1px solid var(--border-color); }
+}
+@media (max-width: 768px) {
+    .navbar { padding: 16px 0; }
+    .navbar-container { padding: 0 16px; }
+    .nav-links { display: none; }
+    .section { padding: 72px 20px; }
+    .hero-photo { padding-bottom: 130px; }
+    .hero-photo-content { bottom: 130px; padding: 0 20px; }
+    .page-hero-content { padding: 0 20px 56px; }
+    .hero-stats-bar { left: 20px; right: 20px; transform: translateY(40%); flex-wrap: wrap; }
+    .hero-stats-bar .stat-item { flex: 1 1 50%; padding: 22px 12px; }
+    .hero-stats-bar .stat-item h3 { font-size: 1.9rem; }
+    .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .feira-mini-stats { gap: 22px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ==========================================================================
+   AJUSTES DE ENQUADRAMENTO (evita cortar cabeças nas fotos de header)
+   ========================================================================== */
+.hero-photo .hero-bg, .page-hero .hero-bg { object-position: center 26%; }
+.feira-banner .feira-img { object-fit: cover; object-position: center 24%; width: 100%; max-height: 440px; }
+.hero-stats-bar .stat-item h3, .feira-mini-stats .num { font-variant-numeric: tabular-nums; }
+
+/* ==========================================================================
+   VÍDEO EM DESTAQUE (YouTube)
+   ========================================================================== */
+.video-feature { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+.video-feature.reverse > .video-frame { order: 2; }
+.video-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); background: #000; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+/* Pôster clicável (abre no YouTube — evita erros de embed em alguns ambientes) */
+.video-poster { display: block; text-decoration: none; cursor: pointer; }
+.video-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.video-poster::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(2,76,118,0.45)); z-index: 1; transition: var(--transition); }
+.video-poster:hover::before { background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(2,76,118,0.30)); }
+.video-play {
+    position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--laranja); color: #fff; font-size: 1.5rem; padding-left: 5px;
+    box-shadow: 0 12px 34px rgba(246,162,28,0.5); transition: var(--transition);
+}
+.video-poster:hover .video-play { transform: translate(-50%,-50%) scale(1.08); }
+.video-poster .video-cta { position: absolute; z-index: 2; bottom: 18px; left: 0; right: 0; text-align: center; color: #fff; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; opacity: 0.92; }
+.video-frame::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); pointer-events: none; }
+.video-tag { display: inline-flex; align-items: center; gap: 9px; color: var(--laranja); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.13em; margin-bottom: 16px; }
+@media (max-width: 992px){
+    .video-feature { grid-template-columns: 1fr; gap: 32px; }
+    .video-feature.reverse > .video-frame { order: -1; }
+}
+
+/* ==========================================================================
+   SUMMIT (seção sobre fundo escuro)
+   ========================================================================== */
+.summit-speakers { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+.summit-speaker {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px; padding: 14px 16px;
+}
+.summit-speaker .av { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid rgba(246,162,28,0.5); }
+.summit-speaker .nm { font-weight: 700; color: #fff; font-size: 0.96rem; line-height: 1.25; }
+.summit-speaker .rl { font-size: 0.8rem; color: rgba(255,255,255,0.65); font-weight: 300; }
+@media (max-width: 600px){ .summit-speakers { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   SELO / EMBLEMA UFMG (pilar Tradição & Credibilidade)
+   ========================================================================== */
+.ufmg-emblem { display: flex; align-items: center; gap: 14px; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--border-color); position: relative; z-index: 1; }
+.ufmg-ring {
+    width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0; position: relative;
+    border: 1.5px solid var(--azul-escuro); display: flex; align-items: center; justify-content: center;
+    color: var(--azul-escuro);
+}
+.ufmg-ring::before { content: ''; position: absolute; inset: 4px; border-radius: 50%; border: 1px solid rgba(2,76,118,0.30); }
+.ufmg-ring i { font-size: 1.05rem; position: relative; z-index: 1; }
+.ufmg-wordmark strong { display: block; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.05em; color: var(--azul-escuro); line-height: 1; }
+.ufmg-wordmark span { display: block; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-top: 6px; }
+
+/* ==========================================================================
+   VITRINE DE LOGO + FOTO DE IDENTIDADE (página O Hub)
+   ========================================================================== */
+.logo-showcase {
+    background: var(--bg-light); border: 1px solid var(--border-color);
+    border-radius: var(--radius-md); padding: 44px 40px; margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center;
+}
+.logo-showcase img { max-width: 230px; width: 100%; margin: 0; }
+.identity-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 32%; border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
