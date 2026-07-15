@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script>document.documentElement.classList.replace('no-js','js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
     <title>Soluções para Empresas | Mercado em Conexão</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
@@ -14,8 +15,8 @@
 <nav class="navbar">
     <div class="navbar-container">
         <a href="index.html" class="logo">
-            <img src="img/logo-mec-white.png" alt="Mercado em Conexão" class="logo-light">
-            <img src="img/logo-mec.png" alt="Mercado em Conexão" class="logo-dark">
+            <img src="img/logo-mec-white.webp" alt="Mercado em Conexão" class="logo-light">
+            <img src="img/logo-mec.webp" alt="Mercado em Conexão" class="logo-dark">
             <span class="logo-text">UFMG <strong>Hub</strong><span class="sub">Conexão &middot; Ação &middot; Inovação</span></span>
         </a>
         <div class="nav-links">
@@ -26,12 +27,29 @@
             <a href="impacto.html">Impacto</a>
             <a href="contato.html" class="btn btn-outline">Fale com a gente</a>
         </div>
+        <!-- Botão Hambúrguer para telas mobile -->
+        <button class="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+    </div>
+    <!-- Gaveta de Navegação Mobile (Mobile Drawer) -->
+    <div class="mobile-drawer">
+        <div class="mobile-drawer-content">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">O Hub</a>
+            <a href="mec.html">A MeC</a>
+            <a href="solucoes.html" class="active">Soluções</a>
+            <a href="impacto.html">Impacto</a>
+            <a href="contato.html" class="btn btn-primary">Fale com a gente</a>
+        </div>
     </div>
 </nav>
 
 <!-- PAGE HERO -->
 <header class="page-hero">
-    <img src="img/DSCF1362.jpg" alt="Auditório cheio de estudantes durante palestra" class="hero-bg">
+    <img src="img/DSCF1362.webp" alt="Auditório cheio de estudantes durante palestra" class="hero-bg">
     <div class="hero-overlay"></div>
     <div class="page-hero-content">
         <span class="hero-eyebrow"><i class="fas fa-briefcase"></i> Para Empresas</span>
@@ -55,7 +73,7 @@
                     <div><div class="num" data-target="100" data-suffix="%">0%</div><div class="lbl">Ativações</div></div>
                 </div>
             </div>
-            <img src="img/ANGT3957.jpg" alt="Estande personalizado na Mercado em Conexão" class="feira-img">
+            <img src="img/ANGT3957.webp" alt="Estande personalizado na Mercado em Conexão" class="feira-img">
         </div>
     </div>
 </section>
@@ -114,7 +132,7 @@
 
         <div class="case-card fade-in">
             <div class="case-img-wrap">
-                <img src="img/fotovisitaarcelor.jpg" alt="Estudantes e docentes da UFMG em visita técnica à ArcelorMittal Sabará">
+                <img src="img/fotovisitaarcelor.webp" alt="Estudantes e docentes da UFMG em visita técnica à ArcelorMittal Sabará">
             </div>
             <div class="case-content">
                 <span class="case-tag">Aplicação &middot; Visitas Técnicas</span>
@@ -125,7 +143,7 @@
 
         <div class="case-card fade-in" style="flex-direction: row-reverse;">
             <div class="case-img-wrap">
-                <img src="img/hacktatonenter.jpg" alt="Participantes do hackathon da Enter realizado dentro da UFMG">
+                <img src="img/hacktatonenter.webp" alt="Participantes do hackathon da Enter realizado dentro da UFMG">
             </div>
             <div class="case-content">
                 <span class="case-tag">Aplicação &middot; Hackathons</span>
@@ -150,7 +168,7 @@
     <div class="footer-grid">
         <div>
             <div class="footer-brand">
-                <img src="img/logo-mec-white.png" alt="Mercado em Conexão">
+                <img src="img/logo-mec-white.webp" alt="Mercado em Conexão">
                 <div class="footer-brand-text">UFMG Hub<span class="sub">Mercado em Conexão</span></div>
             </div>
             <p>O ecossistema que aproxima a tradição e o talento da Escola de Engenharia da UFMG com a inovação do mercado.</p>

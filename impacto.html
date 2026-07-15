@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script>document.documentElement.classList.replace('no-js','js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
     <title>Nosso Impacto | Mercado em Conexão</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
@@ -14,8 +15,8 @@
 <nav class="navbar">
     <div class="navbar-container">
         <a href="index.html" class="logo">
-            <img src="img/logo-mec-white.png" alt="Mercado em Conexão" class="logo-light">
-            <img src="img/logo-mec.png" alt="Mercado em Conexão" class="logo-dark">
+            <img src="img/logo-mec-white.webp" alt="Mercado em Conexão" class="logo-light">
+            <img src="img/logo-mec.webp" alt="Mercado em Conexão" class="logo-dark">
             <span class="logo-text">UFMG <strong>Hub</strong><span class="sub">Conexão &middot; Ação &middot; Inovação</span></span>
         </a>
         <div class="nav-links">
@@ -26,12 +27,29 @@
             <a href="impacto.html" class="active">Impacto</a>
             <a href="contato.html" class="btn btn-outline">Fale com a gente</a>
         </div>
+        <!-- Botão Hambúrguer para telas mobile -->
+        <button class="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+    </div>
+    <!-- Gaveta de Navegação Mobile (Mobile Drawer) -->
+    <div class="mobile-drawer">
+        <div class="mobile-drawer-content">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">O Hub</a>
+            <a href="mec.html">A MeC</a>
+            <a href="solucoes.html">Soluções</a>
+            <a href="impacto.html" class="active">Impacto</a>
+            <a href="contato.html" class="btn btn-primary">Fale com a gente</a>
+        </div>
     </div>
 </nav>
 
 <!-- PAGE HERO -->
 <header class="page-hero">
-    <img src="img/DSCF2852.jpg" alt="Grupo de estudantes sorrindo durante a feira" class="hero-bg">
+    <img src="img/DSCF2852.webp" alt="Grupo de estudantes sorrindo durante a feira" class="hero-bg">
     <div class="hero-overlay"></div>
     <div class="page-hero-content">
         <span class="hero-eyebrow"><i class="fas fa-heart"></i> Histórias reais</span>
@@ -100,15 +118,15 @@
         </div>
         <div class="carousel-container fade-in">
             <div class="carousel-track">
-                <img src="img/ANGT3957.jpg" alt="Estande da feira" class="carousel-slide">
-                <img src="img/DSCF2852.jpg" alt="Participantes da feira" class="carousel-slide">
-                <img src="img/DSCF1362.jpg" alt="Auditório durante palestra" class="carousel-slide">
-                <img src="img/ANGT3273.jpg" alt="Palestrante no auditório" class="carousel-slide">
-                <img src="img/ANGT3179.jpg" alt="Palestrante apresentando" class="carousel-slide">
-                <img src="img/ANGT2566.jpg" alt="Entrevista durante o UFMG Hub Summit" class="carousel-slide">
-                <img src="img/fotovisitaarcelor.jpg" alt="Visita técnica à ArcelorMittal Sabará" class="carousel-slide">
-                <img src="img/hacktatonenter.jpg" alt="Hackathon da Enter dentro da UFMG" class="carousel-slide">
-                <img src="img/DSCF3298.jpg" alt="Networking entre empresa e estudante na feira" class="carousel-slide">
+                <img src="img/ANGT3957.webp" alt="Estande da feira" class="carousel-slide">
+                <img src="img/DSCF2852.webp" alt="Participantes da feira" class="carousel-slide">
+                <img src="img/DSCF1362.webp" alt="Auditório durante palestra" class="carousel-slide">
+                <img src="img/ANGT3273.webp" alt="Palestrante no auditório" class="carousel-slide">
+                <img src="img/ANGT3179.webp" alt="Palestrante apresentando" class="carousel-slide">
+                <img src="img/ANGT2566.webp" alt="Entrevista durante o UFMG Hub Summit" class="carousel-slide">
+                <img src="img/fotovisitaarcelor.webp" alt="Visita técnica à ArcelorMittal Sabará" class="carousel-slide">
+                <img src="img/hacktatonenter.webp" alt="Hackathon da Enter dentro da UFMG" class="carousel-slide">
+                <img src="img/DSCF3298.webp" alt="Networking entre empresa e estudante na feira" class="carousel-slide">
             </div>
         </div>
     </div>
@@ -128,7 +146,7 @@
     <div class="footer-grid">
         <div>
             <div class="footer-brand">
-                <img src="img/logo-mec-white.png" alt="Mercado em Conexão">
+                <img src="img/logo-mec-white.webp" alt="Mercado em Conexão">
                 <div class="footer-brand-text">UFMG Hub<span class="sub">Mercado em Conexão</span></div>
             </div>
             <p>O ecossistema que aproxima a tradição e o talento da Escola de Engenharia da UFMG com a inovação do mercado.</p>

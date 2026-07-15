@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script>document.documentElement.classList.replace('no-js','js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
     <title>Contato | Mercado em Conexão</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
@@ -14,8 +15,8 @@
 <nav class="navbar">
     <div class="navbar-container">
         <a href="index.html" class="logo">
-            <img src="img/logo-mec-white.png" alt="Mercado em Conexão" class="logo-light">
-            <img src="img/logo-mec.png" alt="Mercado em Conexão" class="logo-dark">
+            <img src="img/logo-mec-white.webp" alt="Mercado em Conexão" class="logo-light">
+            <img src="img/logo-mec.webp" alt="Mercado em Conexão" class="logo-dark">
             <span class="logo-text">UFMG <strong>Hub</strong><span class="sub">Conexão &middot; Ação &middot; Inovação</span></span>
         </a>
         <div class="nav-links">
@@ -26,12 +27,29 @@
             <a href="impacto.html">Impacto</a>
             <a href="contato.html" class="btn btn-outline active">Fale com a gente</a>
         </div>
+        <!-- Botão Hambúrguer para telas mobile -->
+        <button class="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+    </div>
+    <!-- Gaveta de Navegação Mobile (Mobile Drawer) -->
+    <div class="mobile-drawer">
+        <div class="mobile-drawer-content">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">O Hub</a>
+            <a href="mec.html">A MeC</a>
+            <a href="solucoes.html">Soluções</a>
+            <a href="impacto.html">Impacto</a>
+            <a href="contato.html" class="btn btn-primary active">Fale com a gente</a>
+        </div>
     </div>
 </nav>
 
 <!-- PAGE HERO -->
 <header class="page-hero" style="min-height: clamp(360px, 48vh, 480px);">
-    <img src="img/ANGT3179.jpg" alt="Felipe Guisoli em palestra do UFMG Hub Summit" class="hero-bg" style="object-position: center 34%;">
+    <img src="img/ANGT3179.webp" alt="Felipe Guisoli em palestra do UFMG Hub Summit" class="hero-bg" style="object-position: center 34%;">
     <div class="hero-overlay"></div>
     <div class="page-hero-content">
         <span class="hero-eyebrow"><i class="fas fa-comments"></i> Vamos conversar?</span>
@@ -118,7 +136,7 @@
     <div class="footer-grid">
         <div>
             <div class="footer-brand">
-                <img src="img/logo-mec-white.png" alt="Mercado em Conexão">
+                <img src="img/logo-mec-white.webp" alt="Mercado em Conexão">
                 <div class="footer-brand-text">UFMG Hub<span class="sub">Mercado em Conexão</span></div>
             </div>
             <p>O ecossistema que aproxima a tradição e o talento da Escola de Engenharia da UFMG com a inovação do mercado.</p>

@@ -48,4 +48,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.6 });
     document.querySelectorAll('[data-target]').forEach(el => numObserver.observe(el));
+
+    // Mobile Navigation Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileDrawer = document.querySelector('.mobile-drawer');
+    if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menuToggle.classList.toggle('open');
+            mobileDrawer.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        // Fechar gaveta ao clicar em qualquer link
+        mobileDrawer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('open');
+                mobileDrawer.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+    }
 });
