@@ -79,37 +79,53 @@
         </div>
 
         <div class="form-card fade-in">
-            <h3 style="margin-bottom: 8px;">Envie sua solicitação</h3>
-            <p style="color: var(--text-muted); font-size: 0.92rem; font-weight: 300; margin-bottom: 28px;">Retornamos em até 2 dias úteis.</p>
-            <form onsubmit="event.preventDefault(); alert('Solicitação enviada para nossa assessoria!');">
-                <div class="form-group">
-                    <label>Nome completo</label>
-                    <input type="text" placeholder="Seu nome" required>
+            <div id="form-content">
+                <h3 style="margin-bottom: 8px;">Envie sua solicitação</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; font-weight: 300; margin-bottom: 28px;">Retornamos em até 2 dias úteis.</p>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="form-name">Nome completo</label>
+                        <input type="text" id="form-name" name="Nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-company">Empresa</label>
+                        <input type="text" id="form-company" name="Empresa" placeholder="Nome da empresa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email">E-mail corporativo</label>
+                        <input type="email" id="form-email" name="Email" placeholder="seuemail@empresa.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-solution">Solução de interesse</label>
+                        <select id="form-solution" name="Solucao">
+                            <option>Mercado em Conexão (Feira)</option>
+                            <option>Palestras</option>
+                            <option>Visitas Técnicas</option>
+                            <option>Hackathon</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message">Mensagem</label>
+                        <textarea id="form-message" name="Mensagem" rows="4" placeholder="Conte um pouco sobre o que você procura" required></textarea>
+                    </div>
+                    <input type="hidden" name="_captcha" value="false">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <span class="btn-text">Falar com assessor <i class="fas fa-paper-plane"></i></span>
+                        <span class="btn-loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Enviando...</span>
+                    </button>
+                </form>
+            </div>
+            <div id="form-success" style="display: none; text-align: center; padding: 20px 0;">
+                <div style="font-size: 3.5rem; color: #28a745; margin-bottom: 20px;">
+                    <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="form-group">
-                    <label>Empresa</label>
-                    <input type="text" placeholder="Nome da empresa" required>
-                </div>
-                <div class="form-group">
-                    <label>E-mail corporativo</label>
-                    <input type="email" placeholder="seuemail@empresa.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Solução de interesse</label>
-                    <select>
-                        <option>Mercado em Conexão (Feira)</option>
-                        <option>Palestras</option>
-                        <option>Visitas Técnicas</option>
-                        <option>Hackathon</option>
-                        <option>Outro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Mensagem</label>
-                    <textarea rows="4" placeholder="Conte um pouco sobre o que você procura"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Falar com assessor <i class="fas fa-paper-plane"></i></button>
-            </form>
+                <h3 style="margin-bottom: 12px; color: var(--azul-escuro);">Solicitação enviada!</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 28px;">
+                    Sua mensagem foi entregue com sucesso para nossa assessoria. Retornaremos em até 2 dias úteis no e-mail informado.
+                </p>
+                <button onclick="resetContactForm()" class="btn btn-primary" style="margin: 0 auto; background: var(--azul-escuro); border: none;">Enviar outra mensagem</button>
+            </div>
         </div>
     </div>
 </section>

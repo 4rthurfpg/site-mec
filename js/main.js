@@ -48,4 +48,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.6 });
     document.querySelectorAll('[data-target]').forEach(el => numObserver.observe(el));
+
+    // Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const formContent = document.getElementById('form-content');
+        const formSuccess = document.getElementById('form-success');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-block';
+
+            // Collect form data
+            const formData = new FormData(contactForm);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Send via FormSubmit AJAX
+            fetch('https://formsubmit.co/ajax/organizacao@ufmghub.com.br', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(resData => {
+                // Success: Hide form and show success message
+                formContent.style.display = 'none';
+                formSuccess.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou envie um e-mail direto para organizacao@ufmghub.com.br.');
+            })
+            .finally(() => {
+                // Reset loading state
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline-block';
+                btnLoading.style.display = 'none';
+            });
+        });
+    }
 });
+
+window.resetContactForm = () => {
+    const contactForm = document.getElementById('contact-form');
+    const formContent = document.getElementById('form-content');
+    const formSuccess = document.getElementById('form-success');
+    if (contactForm && formContent && formSuccess) {
+        contactForm.reset();
+        formSuccess.style.display = 'none';
+        formContent.style.display = 'block';
+    }
+};
+
