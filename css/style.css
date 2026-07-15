@@ -353,8 +353,19 @@ h1, h2, h3, h4 { font-weight: 800; color: var(--azul-escuro); line-height: 1.15;
 .partners-label { text-align: center; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted); margin-bottom: 32px; }
 .marquee { display: flex; width: 200%; animation: scroll 28s linear infinite; gap: 64px; align-items: center; }
 .marquee-content { display: flex; justify-content: space-around; width: 100%; gap: 64px; }
-.partner-logo { font-size: 1.35rem; font-weight: 800; color: #b8c7ce; transition: var(--transition); display:flex; align-items:center; gap:12px; white-space: nowrap; }
-.partner-logo:hover { color: var(--azul-escuro); }
+.partner-logo { transition: var(--transition); display: flex; align-items: center; justify-content: center; height: 32px; }
+.partner-logo img {
+    height: 28px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.6) opacity(0.5);
+    transition: var(--transition);
+}
+.partner-logo:hover img {
+    filter: none;
+    opacity: 1;
+}
 @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ==========================================================================
