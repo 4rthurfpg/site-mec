@@ -6,9 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A MeC | Mercado em Conexão · UFMG Hub</title>
     <meta name="description" content="A Mercado em Conexão é a maior feira de estágios e trainees de Minas Gerais. 3 dias, 32 empresas, 50% dos estudantes de engenharia da UFMG.">
+    <link rel="canonical" href="https://ufmghub.com.br/mec.html">
+    <link rel="icon" type="image/png" href="img/logo-hub.png">
+    <link rel="apple-touch-icon" href="img/logo-hub.png">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ufmghub.com.br/mec.html">
+    <meta property="og:title" content="A MeC | Mercado em Conexão · UFMG Hub">
+    <meta property="og:description" content="A Mercado em Conexão é a maior feira de estágios e trainees de Minas Gerais. 3 dias, 32 empresas, 50% dos estudantes de engenharia da UFMG.">
+    <meta property="og:image" content="https://ufmghub.com.br/img/DSCF1980.jpg">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=4.0">
+    <!-- Event Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Mercado em Conexão (MeC)",
+      "description": "A maior feira de estágios e trainees de Minas Gerais na Escola de Engenharia da UFMG.",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Escola de Engenharia da UFMG",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Escola de Engenharia da UFMG",
+          "addressLocality": "Belo Horizonte",
+          "addressRegion": "MG",
+          "addressCountry": "BR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "UFMG Hub",
+        "url": "https://ufmghub.com.br"
+      }
+    }
+    </script>
     <style>
         /* ── MeC page-specific styles ── */
         .mec-hero { position: relative; min-height: 72vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; text-align: center; }
@@ -68,6 +104,9 @@
             <img src="img/logo-mec.png" alt="Mercado em Conexão" class="logo-dark">
             <span class="logo-text">UFMG <strong>Hub</strong><span class="sub">Conexão &middot; Ação &middot; Inovação</span></span>
         </a>
+        <button class="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="nav-links">
             <a href="index.html">Início</a>
             <a href="sobre.html">O Hub</a>
@@ -260,7 +299,7 @@
     </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=4.0"></script>
 <script>
     // Animate progress bars on scroll
     const barObserver = new IntersectionObserver((entries, obs) => {

@@ -8,6 +8,58 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll);
     onScroll();
 
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (menuToggle && navLinks) {
+        const toggleMenu = (e) => {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            const isOpen = navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                if (isOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    }
+
     // Fade-in Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -46,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 obs.unobserve(e.target);
             }
         });
-    }, { threshold: 0.6 });
+    }, { threshold: 0.15 });
     document.querySelectorAll('[data-target]').forEach(el => numObserver.observe(el));
 
     // Contact Form Submission
@@ -68,7 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Collect form data
             const formData = new FormData(contactForm);
-            const data = {};
+            const data = {
+                _subject: 'Novo Contato do Site - UFMG Hub',
+                _captcha: 'false'
+            };
             formData.forEach((value, key) => {
                 data[key] = value;
             });
@@ -89,6 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(resData => {
+                if (resData.success === 'false' || resData.success === false) {
+                    throw new Error(resData.message || 'Erro no envio');
+                }
                 // Success: Hide form and show success message
                 formContent.style.display = 'none';
                 formSuccess.style.display = 'block';
